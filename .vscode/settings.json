@@ -1,0 +1,15 @@
+{
+	"cSpell.words": [
+		"gestionusuarios",
+		"proyectojava",
+		"springframework",
+		"telefono",
+		"webmvc"
+	],
+	"maven.terminal.favorites": [
+		{
+			"command": "spring-boot:run",
+			"debug": false
+		}
+	]
+}

@@ -1,0 +1,14 @@
+{
+	"configurations": [
+		{
+			"type": "java",
+			"name": "Spring Boot-GestionusuariosApplication<gestionusuarios>",
+			"request": "launch",
+			"cwd": "${workspaceFolder}",
+			"mainClass": "com.proyectojava.gestionusuarios.GestionusuariosApplication",
+			"projectName": "gestionusuarios",
+			"args": "",
+			"envFile": "${workspaceFolder}/.env"
+		}
+	]
+}
