@@ -1,53 +1,53 @@
 package com.proyectojava.gestionusuarios.models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+// especifica que esta clase es una entidad de la base de datos de la tabla usuarios
+@Entity
+@Table(name = "usuarios")
+@ToString
+@EqualsAndHashCode
 public class Usuario {
 
+	@Getter @Setter @Column(name = "id")
+	@Id
+	private Long id;
+
+	@Getter @Setter @Column(name = "nombre")
 	private String nombre;
+
+	@Getter @Setter @Column(name = "apellido")
 	private String apellido;
+
+	@Getter @Setter @Column(name = "telefono")
 	private int telefono;
+
+	@Getter @Setter @Column(name = "email")
 	private String email;
+
+	@Getter @Setter @Column(name = "password")
 	private String password;
 
 	public Usuario(){
 
 	};
 	
-	public Usuario(String nombre, String apellido, int telefono, String email, String password) {
+	public Usuario(Long id, String nombre, String apellido, int telefono, String email, String password) {
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.telefono = telefono;
 		this.email = email;
 		this.password = password;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getApellido() {
-		return apellido;
-	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-	public int getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(int telefono) {
-		this.telefono = telefono;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
+	
 	
 }
