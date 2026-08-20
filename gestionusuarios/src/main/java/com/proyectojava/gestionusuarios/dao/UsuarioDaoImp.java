@@ -18,10 +18,26 @@ public class UsuarioDaoImp implements UsuarioDao {
 	EntityManager entityManager;
 
 	@Override
+	public Usuario getUsuario(Long id){
+		return entityManager.find(Usuario.class, id);
+	}
+
+	@Override
 	public List<Usuario> getUsuarios() {
 		// nombre de la clase Usuario, no de la tabla
 		String query = "FROM Usuario";
 		return entityManager.createQuery(query, Usuario.class).getResultList();
+	}
+
+	@Override
+	public void deleteUsuario(Long id){
+		
+		entityManager.remove(entityManager.find(Usuario.class, id));
+	}
+
+	@Override
+	public void createUsuario(Usuario usuario){
+		entityManager.merge(usuario);
 	}
 
 }
