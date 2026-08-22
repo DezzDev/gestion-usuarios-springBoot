@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyectojava.gestionusuarios.dao.UsuarioDao;
 import com.proyectojava.gestionusuarios.models.Usuario;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @RestController
@@ -39,12 +37,7 @@ public class UsuarioController {
 		usuarioDao.deleteUsuario(id);
 	}
 
-	@PostMapping("api/usuarios")
-	public void createUsuario(@RequestBody Usuario usuario) {
-		
-		usuarioDao.createUsuario(usuario);
-		
-	}
+
 	
 
 }

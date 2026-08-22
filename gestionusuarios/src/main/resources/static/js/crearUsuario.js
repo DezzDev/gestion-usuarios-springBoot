@@ -6,7 +6,7 @@ $(document).ready(function () {
 	
 });
 
-const API_URL = "api/usuarios"
+const API_URL = "api/registrar"
 
 
 async function crearUsuario() {	
@@ -31,7 +31,7 @@ async function crearUsuario() {
 		password: formData.get("password")
 	}
 
-	const usuarios = await fetch(API_URL, {
+	const usuarios = await fetch(`${API_URL}`, {
 		method: 'POST',
 		headers: {
 			"Accept": "application/json",

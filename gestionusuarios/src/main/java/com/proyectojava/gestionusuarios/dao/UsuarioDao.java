@@ -12,7 +12,5 @@ public interface UsuarioDao {
 
 	void deleteUsuario(Long id);
 
-	void createUsuario(Usuario usuario);
-
 
 }
