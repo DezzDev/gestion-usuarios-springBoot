@@ -32,12 +32,18 @@ async function login(){
 		});
 		const response = await data.text();
 		console.log("Respuesta del servidor:", response);
-		if (response !== "ok") {
+
+		if (response === "error") {
 			throw new Error("Error en la solicitud de inicio de sesión");
 		}
+
+		// Guardar el token en el almacenamiento local
+		localStorage.setItem("token", response);
+		localStorage.setItem("email", loginData.email);
+		alert("Inicio de sesión exitoso. Redirigiendo a la página de usuarios...");
 		document.location.href = "usuarios.html";
 
-		console.log(response);
+		
 	} catch (error) {
 		alert("Error al iniciar sesión. Por favor, verifique sus credenciales.");
 		console.error("Error:", error);

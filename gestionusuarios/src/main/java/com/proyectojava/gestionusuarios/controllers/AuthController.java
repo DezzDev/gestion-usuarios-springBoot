@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.proyectojava.gestionusuarios.dao.AuthDao;
 import com.proyectojava.gestionusuarios.dto.LoginRequest;
 import com.proyectojava.gestionusuarios.models.Usuario;
+import com.proyectojava.gestionusuarios.utils.JWTUtil;
 
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
@@ -15,10 +16,11 @@ import de.mkammerer.argon2.Argon2Factory;
 public class AuthController {
 
 	private final AuthDao authDao;
+	private final JWTUtil jwtUtil;
 
-	AuthController(AuthDao authDao) {
+	AuthController(AuthDao authDao, JWTUtil jwtUtil) {
 		this.authDao = authDao;
-
+		this.jwtUtil = jwtUtil;
 	}
 
 	@PostMapping("api/registrar")
@@ -33,11 +35,13 @@ public class AuthController {
 
 	@PostMapping("api/login")
 	public String verificarCredenciales(@RequestBody LoginRequest loginRequest) {
-		Argon2 argon2 = Argon2Factory.create(Argon2Factory.Argon2Types.ARGON2id);
-		String hashedPassword = argon2.
-		System.out.println("Email: " + loginRequest.getEmail());
-		System.out.println("Hashed Password: " + hashedPassword);
-		boolean credencialesValidas = authDao.verificarCredenciales(loginRequest.getEmail(), hashedPassword);
-		return credencialesValidas ? "ok" : "error";
+
+		Usuario userLogueado = authDao.obtenerUsuarioPorCredenciales(loginRequest.getEmail(), loginRequest.getPassword());
+		
+		if(userLogueado == null){
+			return "error";
+		}
+		String token =  jwtUtil.create(userLogueado.getId().toString(), userLogueado.getEmail());
+		return token;
 	}
 }

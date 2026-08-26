@@ -6,6 +6,6 @@ public interface AuthDao {
 
 	void createUsuario(Usuario usuario);
 
-	boolean verificarCredenciales(String email, String password);
+	Usuario obtenerUsuarioPorCredenciales(String email, String password);
 	
 }

@@ -48,6 +48,7 @@ async function crearUsuario() {
 	
 	alert("Usuario creado correctamente");
 	document.getElementById('formCreateUser').reset();
+	window.location.href= "login.html";
 }
 
 

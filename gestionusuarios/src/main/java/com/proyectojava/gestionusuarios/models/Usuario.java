@@ -32,7 +32,7 @@ public class Usuario {
 	@Getter @Setter @Column(name = "telefono")
 	private int telefono;
 
-	@Getter @Setter @Column(name = "email")
+	@Getter @Setter @Column(name = "email", unique = true)
 	private String email;
 
 	@Getter @Setter @Column(name = "password")
