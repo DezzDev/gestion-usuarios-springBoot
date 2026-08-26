@@ -10,10 +10,7 @@ const API_URL = "api/usuarios"
 async function cargarUsuarios() {
 	const usuarios = await fetch(API_URL, {
 		method: 'GET',
-		headers: {
-			"Accept": "application/json",
-			"Content-Type": "application/json"
-		}
+		headers: getHeaders()
 	}).then(response => response.json())
 		.catch(error => console.error('Error:', error));
 
@@ -57,6 +54,14 @@ async function cargarUsuarios() {
 
 }
 
+function getHeaders(){
+	return {
+					"Accept": "application/json",
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${localStorage.getItem("token")}`
+				}
+}
+
 async function deleteUsuario(id) {
 	console.log("Eliminando usuario con id:", id);
 	if(!confirm(`¿Estás seguro de que deseas eliminar al usuario con id ${id}?`)) {
@@ -66,10 +71,7 @@ async function deleteUsuario(id) {
 		const response = await fetch(`${API_URL}/${id}`,
 			{
 				method: "DELETE",
-				headers: {
-					"Accept": "application/json",
-					"Content-Type": "application/json"
-				}
+				headers: getHeaders()
 			}
 		)
 		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);

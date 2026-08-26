@@ -40,7 +40,9 @@ public class JWTUtil {
 			Date now = new Date();
 			Date expirationDate = new Date(now.getTime() + expiration);
 
-			return Jwts.builder()
+			try{
+
+				return Jwts.builder()
 					.id(id)
 					.subject(subject)
 					.issuer(issuer)
@@ -48,16 +50,30 @@ public class JWTUtil {
 					.expiration(expirationDate)
 					.signWith(signingKey)
 					.compact();
+
+			}catch(Exception e){
+				System.out.println("Error al crear el token: " + e.getMessage());
+				return null;
+			}
+
+			
      
     }
 
 		public Claims validate(String token){
+
+			try{
+				return Jwts.parser()
+					.verifyWith(signingKey)
+					.build()
+					.parseSignedClaims(token)
+					.getPayload();
+
+			}catch(Exception e){
+				System.out.println("Error al validar el token: " + e.getMessage());
+				return null;
+			}
 			
-			return Jwts.parser()
-				.verifyWith(signingKey)
-				.build()
-				.parseSignedClaims(token)
-				.getPayload();
 		}
 
   
